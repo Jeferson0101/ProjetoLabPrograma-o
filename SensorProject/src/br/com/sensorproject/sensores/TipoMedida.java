@@ -1,5 +1,5 @@
 package br.com.sensorproject.sensores;
 
-public abstract class Sensor {
-	Li
+public enum TipoMedida {
+	
 }

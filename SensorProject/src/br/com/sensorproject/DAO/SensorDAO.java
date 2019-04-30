@@ -17,7 +17,7 @@ public class SensorDAO implements DAO<Sensor>{
 	public void salvar(Sensor obj) {
 		
 		Connection con = FabricaConexao.getConexao();
-		String sql = "INSERT INTO funcionarios (nome, nascimento, cpf, matricula, endereco, telefone, funcao, setor) VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO sensores (nome, nascimento, cpf, matricula, endereco, telefone, funcao, setor) VALUES (?,?,?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
