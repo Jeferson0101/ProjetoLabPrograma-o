@@ -6,9 +6,6 @@ import java.util.List;
 
 public interface DAO <T>{
 	
-	public void salvar(T obj);
-	public void deletar(int id);
-	public void alterar(T obj);
 	public List<T> pesquisarTodos();
 	
 }
