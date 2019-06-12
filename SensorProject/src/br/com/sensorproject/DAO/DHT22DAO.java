@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import br.com.sensorproject.sensores.DHT22;
 import br.com.sensorproject.sensores.Medida;
 import br.com.sensorproject.sensores.Sensor;
 
