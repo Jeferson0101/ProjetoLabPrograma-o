@@ -5,6 +5,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import br.com.sensorproject.DAO.DHT22DAO;
+import br.com.sensorproject.calcs.Calculos;
 import br.com.sensorproject.sensores.Sensor;
 
 import javax.swing.JPanel;
@@ -18,6 +20,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -39,6 +42,7 @@ public class TelaCalc extends JFrame {
 	private JLabel lblMedianaResult;
 	private JLabel lblModaResult;
 	private JLabel lblVarianciaResult;
+	private JLabel lblMediaResult;
 	public TelaCalc() {
 		setResizable(false);
 		getContentPane().setBackground(Color.GRAY);
@@ -88,14 +92,10 @@ public class TelaCalc extends JFrame {
 		lblVariancia.setBounds(191, 245, 109, 20);
 		getContentPane().add(lblVariancia);
 		
-		JLabel lblMediaResult = new JLabel("");
-		lblMediaResult.setForeground(Color.LIGHT_GRAY);
-		lblMediaResult.setBackground(Color.DARK_GRAY);
-		lblMediaResult.setBounds(309, 152, 46, 20);
-		getContentPane().add(lblMediaResult);
 		getContentPane().add(getLblMedianaResult());
 		getContentPane().add(getLblModaResult());
 		getContentPane().add(getLblVarianciaResult());
+		getContentPane().add(getLblMediaResult());
 		setVisible(true);
 	}
 	private JScrollPane getScrollPane() {
@@ -182,6 +182,15 @@ public class TelaCalc extends JFrame {
 		}
 		return list;
 	}
+	private JLabel getLblMediaResult() {
+		if (lblMediaResult == null) {
+			lblMediaResult = new JLabel("");
+			lblMediaResult.setForeground(Color.LIGHT_GRAY);
+			lblMediaResult.setBackground(Color.DARK_GRAY);
+			lblMediaResult.setBounds(309, 152, 46, 20);
+		}
+		return lblMediaResult;
+	}
 	private JLabel getLblMedianaResult() {
 		if (lblMedianaResult == null) {
 			lblMedianaResult = new JLabel("");
@@ -229,7 +238,13 @@ public class TelaCalc extends JFrame {
 			JOptionPane.showMessageDialog(null, "Preencha ambas as datas");
 			return;
 		}
-		Sensor sensor = new Sensor();
-		sensor.setId(list.getLeadSelectionIndex());
+		Date dtIni = new Date(Date.parse(txtFieldDataDe.getText()));
+		Date dtFim = new Date(Date.parse(txtFieldDataAte.getText()));
+		switch(list.getSelectedIndex()){
+		case 1:
+			DHT22DAO dh22dao = new DHT22DAO();
+			Sensor s = dh22dao.pesquisarTodos(dtIni, dtFim);
+			//lblMediaResult.setText();
+		}
 	}
 }

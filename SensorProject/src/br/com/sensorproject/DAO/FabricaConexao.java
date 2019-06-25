@@ -10,7 +10,7 @@ public class FabricaConexao {
 		Connection con = null;
 		
 		try {
-			con = DriverManager.getConnection("jdbc:postgresql://35.247.192.138:5432/postgres","postgres","123");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","aluno");
 			System.out.println("Conectou!!!");
 		}catch (SQLException e) {
 			e.printStackTrace();
