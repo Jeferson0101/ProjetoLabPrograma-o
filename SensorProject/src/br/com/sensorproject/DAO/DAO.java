@@ -1,12 +1,11 @@
 package br.com.sensorproject.DAO;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Timestamp;
 
 //DAO - Data Access Object
 
 public interface DAO <T>{
 	
-	public T pesquisarTodos(Date dtInicio, Date dtFim);
+	public T pesquisarTodos(Timestamp dtInicio, Timestamp dtFim, String nome);
 	
 }

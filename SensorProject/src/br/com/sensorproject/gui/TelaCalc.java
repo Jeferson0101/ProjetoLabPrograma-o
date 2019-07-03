@@ -2,25 +2,21 @@ package br.com.sensorproject.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import br.com.sensorproject.DAO.DHT22DAO;
-import br.com.sensorproject.calcs.Calculos;
-import br.com.sensorproject.sensores.Sensor;
+import br.com.sensorproject.calcs.Services;
 
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -108,7 +104,7 @@ public class TelaCalc extends JFrame {
 	}
 	private JFormattedTextField getTxtFieldDataAte() {
 		if (txtFieldDataAte == null) {
-			txtFieldDataAte = new JFormattedTextField(mascara("##/##/##"));
+			txtFieldDataAte = new JFormattedTextField(mascara("####-##-##"));
 			txtFieldDataAte.setBackground(Color.LIGHT_GRAY);
 			txtFieldDataAte.setBounds(352, 25, 55, 20);
 			txtFieldDataAte.setColumns(10);
@@ -117,7 +113,7 @@ public class TelaCalc extends JFrame {
 	}
 	private JFormattedTextField getTxtFieldDataDe() {
 		if (txtFieldDataDe == null) {
-			txtFieldDataDe = new JFormattedTextField(mascara("##/##/##"));
+			txtFieldDataDe = new JFormattedTextField(mascara("####-##-##"));
 			txtFieldDataDe.setBackground(Color.LIGHT_GRAY);
 			txtFieldDataDe.setBounds(259, 25, 55, 20);
 			txtFieldDataDe.setColumns(10);
@@ -172,12 +168,11 @@ public class TelaCalc extends JFrame {
 			list = new JList();
 			list.setBackground(Color.LIGHT_GRAY);
 			list.setFont(new Font("Tahoma", Font.BOLD, 22));
-			defaultlist.addElement("DHT22");
-			defaultlist.addElement("Pluviômetro");
-			defaultlist.addElement("Anemômetro");
-			defaultlist.addElement("Biruta");
-			defaultlist.addElement("Umidade Foliar");
-			defaultlist.addElement("Raio U.V");
+			defaultlist.addElement("Anemometer");
+			defaultlist.addElement("endDirection");
+			defaultlist.addElement("pluviometer");
+			defaultlist.addElement("humidity");
+			defaultlist.addElement("temperature");
 			list.setModel(defaultlist);
 		}
 		return list;
@@ -234,17 +229,21 @@ public class TelaCalc extends JFrame {
 		if (list.isSelectionEmpty()){
 			JOptionPane.showMessageDialog(null, "Selecione um item da Lista");
 			return;
-		}else if(txtFieldDataAte.getText().equals("  /  /  ") || txtFieldDataDe.getText().equals("  /  /  ")){
+		}else if(txtFieldDataAte.getText().equals("    -  -  ") || txtFieldDataDe.getText().equals("    -  -  ")){
 			JOptionPane.showMessageDialog(null, "Preencha ambas as datas");
 			return;
 		}
-		Date dtIni = new Date(Date.parse(txtFieldDataDe.getText()));
-		Date dtFim = new Date(Date.parse(txtFieldDataAte.getText()));
-		switch(list.getSelectedIndex()){
-		case 1:
-			DHT22DAO dh22dao = new DHT22DAO();
-			Sensor s = dh22dao.pesquisarTodos(dtIni, dtFim);
-			//lblMediaResult.setText();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		GregorianCalendar gc = new GregorianCalendar();
+		try {
+			Date dtIni = dateFormat.parse(txtFieldDataDe.getText());
+			Date dtFim = dateFormat.parse(txtFieldDataAte.getText());
+			Timestamp timeIni = new Timestamp(dtIni.getTime());
+			Timestamp timeFim = new Timestamp(dtFim.getTime());
+			Services.getMedidas(timeIni,timeFim,list.getSelectedValue().toString());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+
 	}
 }
