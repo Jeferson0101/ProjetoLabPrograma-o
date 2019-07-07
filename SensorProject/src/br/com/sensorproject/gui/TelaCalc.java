@@ -1,10 +1,11 @@
 package br.com.sensorproject.gui;
 
+import br.com.sensorproject.Services.*;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.text.MaskFormatter;
 
-import br.com.sensorproject.calcs.Services;
+import br.com.sensorproject.Services.ServiceTela;
 
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
@@ -26,6 +27,7 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 
 public class TelaCalc extends JFrame {
+	ServiceTela servico = new ServiceTela();
 	private JScrollPane scrollPane;
 	private JFormattedTextField txtFieldDataAte;
 	private JFormattedTextField txtFieldDataDe;
@@ -240,7 +242,7 @@ public class TelaCalc extends JFrame {
 			Date dtFim = dateFormat.parse(txtFieldDataAte.getText());
 			Timestamp timeIni = new Timestamp(dtIni.getTime());
 			Timestamp timeFim = new Timestamp(dtFim.getTime());
-			Services.getMedidas(timeIni,timeFim,list.getSelectedValue().toString());
+			int media = servico.getMedidas(timeIni,timeFim,list.getSelectedValue().toString());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

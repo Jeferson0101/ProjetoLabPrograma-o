@@ -22,6 +22,7 @@ public class SensorDAO implements DAO<Sensor>{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, nome);
 			ps.setTimestamp(2, dtInicio);
+			
 			ps.setTimestamp(3, dtFim);
 			System.out.println(ps.toString());
 			ResultSet rs = ps.executeQuery();
