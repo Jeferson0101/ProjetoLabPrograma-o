@@ -1,12 +1,10 @@
-package br.com.sensorproject.gui;
+package br.com.sensorproject.view;
 
-import br.com.sensorproject.Services.*;
+import br.com.sensorproject.controller.ServiceTela;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.text.MaskFormatter;
-
-import br.com.sensorproject.Services.ServiceTela;
-
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -171,7 +169,6 @@ public class TelaCalc extends JFrame {
 			list.setBackground(Color.LIGHT_GRAY);
 			list.setFont(new Font("Tahoma", Font.BOLD, 22));
 			defaultlist.addElement("Anemometer");
-			defaultlist.addElement("endDirection");
 			defaultlist.addElement("pluviometer");
 			defaultlist.addElement("humidity");
 			defaultlist.addElement("temperature");

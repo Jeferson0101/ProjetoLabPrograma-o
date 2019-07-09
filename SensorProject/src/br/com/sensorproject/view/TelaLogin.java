@@ -1,4 +1,4 @@
-package br.com.sensorproject.gui;
+package br.com.sensorproject.view;
 
 import java.awt.Color;
 import java.awt.Cursor;

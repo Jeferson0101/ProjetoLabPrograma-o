@@ -1,8 +1,7 @@
-package br.com.sensorproject.DAO;
+package br.com.sensorproject.model.sensors.DAO;
 
 import java.sql.Timestamp;
 
-//DAO - Data Access Object
 
 public interface DAO <T>{
 	

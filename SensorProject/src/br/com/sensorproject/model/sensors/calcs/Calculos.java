@@ -1,7 +1,7 @@
-package br.com.sensorproject.calcs;
+package br.com.sensorproject.model.sensors.calcs;
 
 
-import br.com.sensorproject.sensores.Sensor;
+import br.com.sensorproject.model.sensors.Sensor;
 
 public class Calculos {
 	public static float media(Sensor sensor){

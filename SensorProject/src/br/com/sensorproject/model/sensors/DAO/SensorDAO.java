@@ -1,4 +1,4 @@
-package br.com.sensorproject.DAO;
+package br.com.sensorproject.model.sensors.DAO;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -8,15 +8,15 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-import br.com.sensorproject.sensores.Sensor;
+import br.com.sensorproject.model.sensors.Sensor;
 
 public class SensorDAO implements DAO<Sensor>{
 	
 	@Override
 	public Sensor pesquisarTodos(Timestamp dtInicio, Timestamp dtFim, String nome) {
 		
-		
-		Connection con = FabricaConexaoSingleton.getConection();
+		FabricaConexaoSingleton fcs = FabricaConexaoSingleton.getInstance();
+		Connection con = fcs.getCon();
 		String sql = "SELECT * FROM ts_kv Where key = ? and senddata BETWEEN ? and ?";
 		Sensor s = new Sensor();
 		List<Integer> medidas = new ArrayList<Integer>();
@@ -36,7 +36,6 @@ public class SensorDAO implements DAO<Sensor>{
 			s.setMedidas(medidas);
 			rs.close();
 			ps.close();
-			con.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

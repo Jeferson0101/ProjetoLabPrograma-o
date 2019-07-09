@@ -1,4 +1,4 @@
-package br.com.sensorproject.sensores;
+package br.com.sensorproject.model.sensors;
 
 import java.util.List;
 
