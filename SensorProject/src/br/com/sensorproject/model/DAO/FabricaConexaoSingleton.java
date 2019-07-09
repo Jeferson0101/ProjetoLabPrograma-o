@@ -8,6 +8,7 @@ public class FabricaConexaoSingleton {
 	
 	private static FabricaConexaoSingleton fabrica = new FabricaConexaoSingleton();
 	private Connection con = null;
+	
 	private FabricaConexaoSingleton () {
 		try {
 			con = DriverManager.getConnection("jdbc:postgresql://pesquisa02.lages.ifsc.edu.br:5432/thingsboard","postgres","pesquisa@robson2018");

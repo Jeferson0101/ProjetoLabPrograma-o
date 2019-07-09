@@ -5,19 +5,18 @@ import java.util.Arrays;
 
 import br.com.sensorproject.model.DAO.SensorDAO;
 import br.com.sensorproject.model.sensors.Sensor;
-
-import org.apache.commons.math3.stat.Frequency;
 import org.apache.commons.math3.stat.StatUtils;
-import org.apache.commons.math3.stat.descriptive.*;
-import org.apache.commons.math3.util.FastMath;
+
 
 public class ServiceTela {
-	double[] arrayOfDouble;
-	int [] arrayOfInteger;
-	SensorDAO dao = new SensorDAO();
-	Sensor sensor = new Sensor();
-	float soma;
-	float media;
+	
+	private double[] arrayOfDouble;
+	private int [] arrayOfInteger;
+	private SensorDAO dao = new SensorDAO();
+	private Sensor sensor = new Sensor();
+	private float soma;
+	private float media;
+	
 	public void getMedidas(Timestamp dataInicio, Timestamp datafim, String nome) {
 		
 		sensor = dao.pesquisarTodos(dataInicio, datafim, nome);
@@ -70,8 +69,8 @@ public class ServiceTela {
 	
 	public double getVariance() {
 
-		double std = StatUtils.populationVariance(arrayOfDouble);
-		return std;
+		return StatUtils.populationVariance(arrayOfDouble);
+
 	}
 	
 	
