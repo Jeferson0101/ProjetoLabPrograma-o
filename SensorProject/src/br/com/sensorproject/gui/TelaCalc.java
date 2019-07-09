@@ -242,7 +242,11 @@ public class TelaCalc extends JFrame {
 			Date dtFim = dateFormat.parse(txtFieldDataAte.getText());
 			Timestamp timeIni = new Timestamp(dtIni.getTime());
 			Timestamp timeFim = new Timestamp(dtFim.getTime());
-			int media = servico.getMedidas(timeIni,timeFim,list.getSelectedValue().toString());
+			servico.getMedidas(timeIni,timeFim,list.getSelectedValue().toString());
+			lblMediaResult.setText( Float.toString(servico.getMedia()));
+			servico.getMediana();
+			
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
