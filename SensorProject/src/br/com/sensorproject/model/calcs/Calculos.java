@@ -1,4 +1,4 @@
-package br.com.sensorproject.model.sensors.calcs;
+package br.com.sensorproject.model.calcs;
 
 
 import br.com.sensorproject.model.sensors.Sensor;

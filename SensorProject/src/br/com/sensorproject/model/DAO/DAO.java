@@ -1,4 +1,4 @@
-package br.com.sensorproject.model.sensors.DAO;
+package br.com.sensorproject.model.DAO;
 
 import java.sql.Timestamp;
 

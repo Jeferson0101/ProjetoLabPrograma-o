@@ -3,8 +3,8 @@ package br.com.sensorproject.controller;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
+import br.com.sensorproject.model.DAO.SensorDAO;
 import br.com.sensorproject.model.sensors.Sensor;
-import br.com.sensorproject.model.sensors.DAO.SensorDAO;
 
 import org.apache.commons.math3.stat.Frequency;
 import org.apache.commons.math3.stat.StatUtils;
