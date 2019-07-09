@@ -14,7 +14,9 @@ public class SensorDAO implements DAO<Sensor>{
 	
 	@Override
 	public Sensor pesquisarTodos(Timestamp dtInicio, Timestamp dtFim, String nome) {
-		Connection con = FabricaConexao.getConexao();
+		
+		
+		Connection con = FabricaConexaoSingleton.getConection();
 		String sql = "SELECT * FROM ts_kv Where key = ? and senddata BETWEEN ? and ?";
 		Sensor s = new Sensor();
 		List<Integer> medidas = new ArrayList<Integer>();
